@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Member} from "../member";
+import {MemberService} from "../member.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  members: Member[] = [];
 
-  constructor() { }
+  constructor(private memberService: MemberService){}
 
   ngOnInit(): void {
+    this.getMembers()
+  }
+
+  getMembers(): void {
+    this.memberService.getMembers()
+      .subscribe(members => this.members = members.slice(1, 5))
   }
 
 }
