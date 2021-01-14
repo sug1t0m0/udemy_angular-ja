@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-chat"
+    }
+  },
+  "defaultProject": "angular-chat",
+  "cli": {
+    "analytics": false
+  }
 }
