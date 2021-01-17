@@ -1,4 +1,3 @@
-
 <div class="page">
   <section class="chat">
     <div class="chat-timeline">
@@ -15,7 +14,7 @@
           <div class="media-body">
             <div class="d-flex w-100 justify-content-between">
               <h4 class="media-heading">{{comment.user.name}}</h4>
-              <small class="media-date">2020/12/01</small>
+              <small class="media-date">{{comment.date | commentDate }}</small>
             </div>
             <pre>{{comment.message}}</pre>
           </div>
@@ -32,10 +31,23 @@
   <section class="chat-editor">
     <form class="chat-form">
       <div class="form-header d-flex flex-row-reverse mb-2">
-        <span class="input-group-btn"><button class="btn btn-info btn-sm" type="submit" tabindex="2">送信</button></span>
+        <span class="input-group-btn">
+          <button
+            (click)="addComment(comment); comment=''"
+            class="btn btn-info btn-sm"
+            type="submit"
+            tabindex="2"
+          >送信</button>
+        </span>
       </div>
       <div class="input-group">
-        <textarea class="form-control" placeholder="メッセージを入力" tabindex="1"></textarea>
+        <textarea
+          [(ngModel)]="comment"
+          name="comment"
+          class="form-control"
+          placeholder="メッセージを入力"
+          tabindex="1"
+        ></textarea>
       </div>
     </form>
   </section>
