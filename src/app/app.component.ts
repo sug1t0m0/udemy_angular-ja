@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import {Comment} from "./class/comment";
 import {User} from "./class/user";
+import {Observable} from "rxjs";
+import {AngularFireDatabase} from "@angular/fire/database";
 
 const CURRENT_USER: User = new User(1, 'aaa')
 const ANOTHER_USER: User = new User(2, 'bbb')
@@ -22,6 +24,12 @@ export class AppComponent {
   comments = COMMENTS;
   currentUser = CURRENT_USER;
   comment = '';
+  item$: Observable<any>;
+
+  constructor(private db: AngularFireDatabase){
+    this.item$ = db.object('/item').valueChanges()
+  }
+
 
   addComment(comment: string): void {
     if(comment){
