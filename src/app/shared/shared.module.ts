@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
-import { CommentDatePipe } from './pipes/comment-date.pipe';
+import { CommentDatePipe } from '../pipes/comment-date.pipe';
 
 
 
