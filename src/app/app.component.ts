@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
   selector: 'ac-root',
   template: `
     <ac-header></ac-header>
-    <ac-chat></ac-chat>
+    <div class="page">
+      <router-outlet></router-outlet>
+    </div>
   `,
-  styles: ['.app.component.css']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
