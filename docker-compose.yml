@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  node:
+    build: .
+    ports:
+      - "4200:4200"
+      -  "9005:9005"
+    volumes:
+      - ".:/projects"
+    tty: true
