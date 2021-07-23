@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-chat-dev-37e14": {
+      "hosting": {
+        "angular-caht": [
+          "angular-chat-dev-37e14"
+        ]
+      }
+    }
+  }
+}
