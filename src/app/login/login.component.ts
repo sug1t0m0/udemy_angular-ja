@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../core/services/auth.service";
+import {Router} from "@angular/router";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'ac-login',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  login(form: NgForm): void {
+    const {email, password} = form.value;
+    this.authService.login(email, password)
+      .then((a)=>{
+        console.log(a)
+        this.router.navigateByUrl('/')})
   }
 
 }
