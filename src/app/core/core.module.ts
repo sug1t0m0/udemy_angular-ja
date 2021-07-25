@@ -8,6 +8,7 @@ import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {environment} from "../../environments/environment";
 import { HeaderComponent } from './components/header/header.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import {RouterModule} from "@angular/router";
 
 
 
@@ -18,9 +19,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
   exports: [
     HeaderComponent
