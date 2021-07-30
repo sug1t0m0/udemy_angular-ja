@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
 import * as firebase from "firebase";
 import {AngularFireDatabase} from "@angular/fire/database";
+import {User} from "../../class/user";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class UserService {
 
           user.sendEmailVerification(actionCodeSettings)
 
-          this.db.object(`/users/${user.uid}`).set({uid: user.uid, email: user.email})
+          this.db.object(`/users/${user.uid}`).set(new User(user))
         }
       })
   }
