@@ -14,7 +14,7 @@
         <div class="media-body">
           <div class="d-flex w-100 justify-content-between">
             <h4 class="media-heading">
-              {{comment.user.name}}
+              {{comment.user.displayName}}
               <ng-container *ngIf="comment.user.uid === currentUser.uid">
                 <i class="fa fa-edit ml-2" title="編集" (click)="comment.isEditing = !comment.isEditing"></i>
                 <i class="fa fa-trash ml-2" title="削除" (click)="deleteComment(comment)"></i>

@@ -5,9 +5,9 @@ import {map} from "rxjs/operators";
 
 import { Comment } from "../class/comment";
 import {User} from "../class/user"
+import {AngularFireAuth} from "@angular/fire/auth";
+import * as firebase from "firebase";
 
-const CURRENT_USER: User = new User(1, "AAA aaa")
-const ANOTHER_USER: User = new User(2, "BBB bbb")
 
 @Component({
   selector: 'ac-chat',
@@ -18,11 +18,25 @@ export class ChatComponent implements OnInit {
 
   comments$: Observable<Comment[]>;
   commentsRef: AngularFireList<Comment>;
-  currentUser = CURRENT_USER;
+  currentUser: User;
   comment = '';
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(
+    private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth
+  ) {
+
     this.commentsRef = db.list('/comments');
+
+  }
+
+  ngOnInit():void {
+
+    this.afAuth.authState.subscribe((user: firebase.User | null)=>{
+      if (user) {
+        this.currentUser = new User(user)
+      }
+    })
     this.comments$ = this.commentsRef.snapshotChanges()
       .pipe(
         map((snapshots: SnapshotAction<Comment>[])=>{
@@ -32,9 +46,6 @@ export class ChatComponent implements OnInit {
           })
         })
       );
-  }
-
-  ngOnInit():void {
   }
 
   addComment(comment: string): void {
